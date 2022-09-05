@@ -1,22 +1,25 @@
 import './App.css';
 import { ColorExtractor } from 'react-color-extractor';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 
 function App() {
 
   const [colors, setColors] = useState([]);
 
+  // useEffect(() =>{
+  //   getColors(colors);
+  // }, []);
+
   const getColors = (colors) => {
     setColors (colors);
-    
   }
 
 
 
-  console.log('colors before return', colors);
-  console.log('colors in brackets', {colors});
-  console.log('getColor function', getColors);
+ console.log('this is colors', colors);
+  // console.log('colors in brackets', {colors});
+  // console.log('getColor function', getColors);
 
 
   return (
@@ -33,17 +36,20 @@ function App() {
         </ColorExtractor>
         <h3>This is what is returned from color extractor:</h3>
         <p>{JSON.stringify(colors)}</p>
-        
-        <button>Get colors!</button>  
+         
+        <h3>Mapping through the colors array:</h3>
+         <div>
+          {colors.map((color, id) => (
+            <div
+            key={id}
+            className="color-box"
+            style={{backgroundColor: color}}
+            >
+              {color}
+            </div>
+          ))}
+        </div> 
 
-        {/* <ul>
-          {colors.map(color => {
-            return
-            (<li>color</li>
-            );
-          })}
-        </ul> */}
-           
    
     </div>
   );
