@@ -2,18 +2,28 @@ import './App.css';
 //✅import ColorExtractor component from library
 import { ColorExtractor } from 'react-color-extractor';
 import {useState} from 'react';
+import { SketchPicker } from 'react-color';
 
 
 function App() {
   //✅set a local "colors" which is a local state w default state as empty array.
   const [colors, setColors] = useState([]);
+  const [stageColor, setStageColor] = useState({background: '#fff'});
 
   //✅declared a getColors function that takes in props of "colors" and adds it too colors array.
   const getColors = (colors) => {
     setColors (colors);
   }
 
+  //function that changes stageColor with the color picker
+  const handleColorChange = (color) => {
+    setStageColor({background: color.hex});
+
+  }//end of colorChange
+
  console.log('this is colors', colors);
+ console.log('this is stageColor', stageColor);
+
   // console.log('colors in brackets', {colors});
   // console.log('getColor function', getColors);
 
@@ -47,7 +57,10 @@ function App() {
             </div>
           ))}
         </div> 
-
+        <SketchPicker
+        color={stageColor.background}
+        onChange ={handleColorChange}
+        />;
    
     </div>
   );
