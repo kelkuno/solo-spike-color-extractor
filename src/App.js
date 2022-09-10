@@ -2,13 +2,13 @@ import './App.css';
 //✅import ColorExtractor component from library
 import { ColorExtractor } from 'react-color-extractor';
 import {useState} from 'react';
-import { SketchPicker } from 'react-color';
+import { ChromePicker } from 'react-color';
 
 
 function App() {
   //✅set a local "colors" which is a local state w default state as empty array.
   const [colors, setColors] = useState([]);
-  const [stageColor, setStageColor] = useState({background: '#fff'});
+  const [stageColor, setStageColor] = useState('#fff');
 
   //✅declared a getColors function that takes in props of "colors" and adds it too colors array.
   const getColors = (colors) => {
@@ -17,8 +17,7 @@ function App() {
 
   //function that changes stageColor with the color picker
   const handleColorChange = (color) => {
-    setStageColor({background: color.hex});
-
+    setStageColor(color.hex);
   }//end of colorChange
 
  console.log('this is colors', colors);
@@ -57,11 +56,12 @@ function App() {
             </div>
           ))}
         </div> 
-        <SketchPicker
-        color={stageColor.background}
+        <ChromePicker
+        color={stageColor}
         onChange ={handleColorChange}
+        disableAlpha={true}
         />;
-   
+  
     </div>
   );
 }
